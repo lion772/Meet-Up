@@ -8,6 +8,7 @@ interface IMeetupList {
         image: string;
         title: string;
         address: string;
+        description: string;
     }[];
 }
 
@@ -21,6 +22,7 @@ const MeetupList: FC<IMeetupList> = (props) => {
                     image={meetup.image}
                     title={meetup.title}
                     address={meetup.address}
+                    description={meetup.description}
                 />
             ))}
         </ul>

@@ -1,6 +1,6 @@
 import styles from "./MeetupDetail.module.css";
 
-type DataDetail = {
+export type MeetupData = {
     id: string;
     image: string;
     address: string;
@@ -8,7 +8,7 @@ type DataDetail = {
     description: string;
 };
 
-export default function MeetupDetail(props: DataDetail) {
+export default function MeetupDetail(props: MeetupData) {
     console.log(props.image);
     return (
         <section className={styles.detail}>

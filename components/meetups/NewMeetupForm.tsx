@@ -3,7 +3,7 @@ import { FC, SyntheticEvent, useRef } from "react";
 import Card from "../ui/Card";
 import classes from "./NewMeetupForm.module.css";
 
-export type MeetupData = {
+type MeetupData = {
     title: string | undefined;
     image: string | undefined;
     address: string | undefined;

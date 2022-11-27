@@ -1,3 +1,5 @@
+import { FC, Fragment } from "react";
+import { MeetupData } from "../components/meetups/MeetupDetail";
 import MeetupList from "../components/meetups/MeetupList";
 
 const DUMMY_MEETUPS = [
@@ -24,10 +26,25 @@ const DUMMY_MEETUPS = [
     },
 ];
 
-export default function HomePage() {
-    return (
-        <>
-            <MeetupList meetups={DUMMY_MEETUPS} />
-        </>
-    );
+interface IHomePage {
+    meetups: MeetupData[];
 }
+
+const HomePage: FC<IHomePage> = ({ meetups }) => {
+    return (
+        <Fragment>
+            <MeetupList meetups={meetups} />
+        </Fragment>
+    );
+};
+
+export async function getStaticProps() {
+    //fetch data from an API
+    return {
+        props: {
+            meetups: DUMMY_MEETUPS,
+        },
+    };
+}
+
+export default HomePage;
