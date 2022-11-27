@@ -9,7 +9,7 @@ interface IMeetupDetailPage {
 }
 
 const MeetupDetailPage: FC<IMeetupDetailPage> = ({ meetup }) => {
-    const { meetupId } = useRouter().query;
+    //const { meetupId } = useRouter().query;
     return (
         <MeetupDetail
             key={meetup.id}
