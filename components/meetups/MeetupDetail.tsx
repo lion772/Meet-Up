@@ -9,7 +9,6 @@ export type MeetupData = {
 };
 
 export default function MeetupDetail(props: MeetupData) {
-    console.log(props.image);
     return (
         <section className={styles.detail}>
             <h1>Meetup Detail</h1>

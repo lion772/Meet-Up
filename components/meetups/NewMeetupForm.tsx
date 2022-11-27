@@ -3,7 +3,7 @@ import { FC, SyntheticEvent, useRef } from "react";
 import Card from "../ui/Card";
 import classes from "./NewMeetupForm.module.css";
 
-type MeetupData = {
+export type MeetupDataForm = {
     title: string | undefined;
     image: string | undefined;
     address: string | undefined;
@@ -11,7 +11,7 @@ type MeetupData = {
 };
 
 interface IMeetupForm {
-    onAddMeetup: (meetupData: MeetupData) => void;
+    onAddMeetup: (meetupData: MeetupDataForm) => void;
 }
 
 const NewMeetupForm: FC<IMeetupForm> = (props) => {

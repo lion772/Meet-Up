@@ -1,9 +1,9 @@
 import NewMeetupForm, {
-    MeetupData,
+    MeetupDataForm,
 } from "../../components/meetups/NewMeetupForm";
 
 export default function NewMeetup() {
-    function onAddMeetupHandler(meetupData: MeetupData) {
+    function onAddMeetupHandler(meetupData: MeetupDataForm) {
         console.log(meetupData);
 
         //save in database
