@@ -5,7 +5,6 @@ import { FC } from "react";
 import MeetupDetail, {
     MeetupData,
 } from "../../components/meetups/MeetupDetail";
-import { MONGODB_PASSWORD } from "../../secrets";
 
 interface IMeetupDetailPage {
     meetup: MeetupData;
@@ -32,7 +31,7 @@ const MeetupDetailPage: FC<IMeetupDetailPage> = ({ meetup }) => {
 };
 
 export async function getStaticPaths() {
-    const uri = `mongodb+srv://lion772:${MONGODB_PASSWORD}@cluster0.xe1fe.mongodb.net/meetups?retryWrites=true&w=majority`;
+    const uri = `mongodb+srv://lion772:kagebushin22@cluster0.xe1fe.mongodb.net/meetups?retryWrites=true&w=majority`;
     const client = await MongoClient.connect(uri);
     const db = client.db();
     const meetupsCollection = db.collection("meetups");
@@ -59,7 +58,7 @@ export async function getStaticProps(context: {
     console.log(meetupId);
     //fetch data from an API
 
-    const uri = `mongodb+srv://lion772:${MONGODB_PASSWORD}@cluster0.xe1fe.mongodb.net/meetups?retryWrites=true&w=majority`;
+    const uri = `mongodb+srv://lion772:kagebushin22@cluster0.xe1fe.mongodb.net/meetups?retryWrites=true&w=majority`;
     const client = await MongoClient.connect(uri);
     const db = client.db();
     const meetupsCollection = db.collection("meetups");
