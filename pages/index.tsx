@@ -3,7 +3,7 @@ import Head from "next/head";
 import { FC, Fragment } from "react";
 import { MeetupData } from "../components/meetups/MeetupDetail";
 import MeetupList from "../components/meetups/MeetupList";
-import { MONGODB_PASSWORD, server } from "../secrets";
+import { MONGODB_PASSWORD } from "../secrets";
 
 interface IHomePage {
     meetups: MeetupData[];
@@ -38,7 +38,7 @@ const HomePage: FC<IHomePage> = ({ meetups }) => {
  */
 export async function getStaticProps() {
     //fetch data from an API
-    const uri = `mongodb+srv://lion772:${MONGODB_PASSWORD}@cluster0.xe1fe.mongodb.net/meetups?retryWrites=true&w=majority`;
+    const uri = `mongodb+srv://lion772:kagebushin22@cluster0.xe1fe.mongodb.net/meetups?retryWrites=true&w=majority`;
     const client = await MongoClient.connect(uri);
     const db = client.db();
     const meetupsCollection = db.collection("meetups");
