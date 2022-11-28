@@ -4,7 +4,7 @@ import { MongoClient, ServerApiVersion } from "mongodb";
 import { MeetupData } from "../../components/meetups/MeetupDetail";
 import { MONGODB_PASSWORD } from "../../secrets";
 
-async function handler(req: any, res: any) {
+export default async function handler(req: any, res: any) {
     if (req.method === "POST") {
         const data: MeetupData = req.body;
 
@@ -26,5 +26,3 @@ async function handler(req: any, res: any) {
         }
     }
 }
-
-export default handler;
