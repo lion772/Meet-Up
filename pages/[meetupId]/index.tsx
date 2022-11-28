@@ -1,8 +1,10 @@
+import { MongoClient, ObjectId } from "mongodb";
 import { useRouter } from "next/router";
 import { FC } from "react";
 import MeetupDetail, {
     MeetupData,
 } from "../../components/meetups/MeetupDetail";
+import { MONGODB_PASSWORD } from "../../secrets";
 
 interface IMeetupDetailPage {
     meetup: MeetupData;
@@ -22,40 +24,50 @@ const MeetupDetailPage: FC<IMeetupDetailPage> = ({ meetup }) => {
     );
 };
 
+export async function getStaticPaths() {
+    const uri = `mongodb+srv://lion772:${MONGODB_PASSWORD}@cluster0.xe1fe.mongodb.net/meetups?retryWrites=true&w=majority`;
+    const client = await MongoClient.connect(uri);
+    const db = client.db();
+    const meetupsCollection = db.collection("meetups");
+    const meetups = await meetupsCollection
+        .find({}, { projection: { _id: 1 } })
+        .toArray();
+
+    client.close();
+
+    const paths = meetups.map((meetup) => ({
+        params: { meetupId: meetup._id.toString() },
+    }));
+
+    return {
+        fallback: false,
+        paths: paths,
+    };
+}
+
 export async function getStaticProps(context: {
     params: { meetupId: string };
 }) {
     const meetupId = context.params.meetupId;
     console.log(meetupId);
     //fetch data from an API
+
+    const uri = `mongodb+srv://lion772:${MONGODB_PASSWORD}@cluster0.xe1fe.mongodb.net/meetups?retryWrites=true&w=majority`;
+    const client = await MongoClient.connect(uri);
+    const db = client.db();
+    const meetupsCollection = db.collection("meetups");
+    const selectedMeetup = await meetupsCollection.findOne({
+        _id: new ObjectId(meetupId),
+    });
+    client.close();
+
     return {
         props: {
             meetup: {
-                id: meetupId,
-                image: "https://upload.wikimedia.org/wikipedia/commons/thumb/1/17/Panorama_of_Canal_Grande_and_Ponte_di_Rialto%2C_Venice_-_September_2017.jpg/1024px-Panorama_of_Canal_Grande_and_Ponte_di_Rialto%2C_Venice_-_September_2017.jpg",
-                address: "La Serenissima",
-                title: "Venice",
-                description: "This is a first meetup",
+                id: selectedMeetup?._id.toString(),
+                ...selectedMeetup?.data,
             },
         },
-    };
-}
-
-export async function getStaticPaths() {
-    return {
-        paths: [
-            {
-                params: {
-                    meetupId: "m1",
-                },
-            },
-            {
-                params: {
-                    meetupId: "m2",
-                },
-            },
-        ],
-        fallback: false,
     };
 }
 
