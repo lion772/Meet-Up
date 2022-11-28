@@ -1,6 +1,5 @@
 import { MongoClient, ObjectId } from "mongodb";
 import Head from "next/head";
-import { useRouter } from "next/router";
 import { FC } from "react";
 import MeetupDetail, {
     MeetupData,
@@ -11,7 +10,6 @@ interface IMeetupDetailPage {
 }
 
 const MeetupDetailPage: FC<IMeetupDetailPage> = ({ meetup }) => {
-    //const { meetupId } = useRouter().query;
     return (
         <>
             <Head>

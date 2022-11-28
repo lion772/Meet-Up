@@ -4,17 +4,12 @@ import NewMeetupForm, {
     MeetupDataForm,
 } from "../../components/meetups/NewMeetupForm";
 
-const dev = process.env.NODE_ENV !== "production";
-const server = dev
-    ? "http://localhost:3000"
-    : "https://meet-up-ozc5-o9h4e87e7-lion772.vercel.app/";
-
 export default function NewMeetup() {
     const router = useRouter();
     async function onAddMeetupHandler(meetupData: MeetupDataForm) {
         //save in database
         const data = await (
-            await fetch(`${server}/api/new-meetup`, {
+            await fetch(`/api/new-meetup`, {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",
