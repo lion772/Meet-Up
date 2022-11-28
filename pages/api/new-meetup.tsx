@@ -2,14 +2,13 @@
 
 import { MongoClient, ServerApiVersion } from "mongodb";
 import { MeetupData } from "../../components/meetups/MeetupDetail";
-import { MONGODB_PASSWORD } from "../../secrets";
 
 export default async function handler(req: any, res: any) {
     if (req.method === "POST") {
         const data: MeetupData = req.body;
 
         try {
-            const uri = `mongodb+srv://lion772:${MONGODB_PASSWORD}@cluster0.xe1fe.mongodb.net/meetups?retryWrites=true&w=majority`;
+            const uri = `mongodb+srv://lion772:kagebushin22@cluster0.xe1fe.mongodb.net/meetups?retryWrites=true&w=majority`;
             const client = await MongoClient.connect(uri);
             const db = client.db();
             //Get hold of db collections
