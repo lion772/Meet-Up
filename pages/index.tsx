@@ -1,4 +1,5 @@
 import { MongoClient } from "mongodb";
+import Head from "next/head";
 import { FC, Fragment } from "react";
 import { MeetupData } from "../components/meetups/MeetupDetail";
 import MeetupList from "../components/meetups/MeetupList";
@@ -11,6 +12,13 @@ interface IHomePage {
 const HomePage: FC<IHomePage> = ({ meetups }) => {
     return (
         <Fragment>
+            <Head>
+                <title>Meetups</title>
+                <meta
+                    name="description"
+                    content="Browse a huge list of highly active react meetups! "
+                />
+            </Head>
             <MeetupList meetups={meetups} />
         </Fragment>
     );

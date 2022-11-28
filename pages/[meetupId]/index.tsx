@@ -1,4 +1,5 @@
 import { MongoClient, ObjectId } from "mongodb";
+import Head from "next/head";
 import { useRouter } from "next/router";
 import { FC } from "react";
 import MeetupDetail, {
@@ -13,14 +14,20 @@ interface IMeetupDetailPage {
 const MeetupDetailPage: FC<IMeetupDetailPage> = ({ meetup }) => {
     //const { meetupId } = useRouter().query;
     return (
-        <MeetupDetail
-            key={meetup.id}
-            id={meetup.id}
-            image={meetup.image}
-            address={meetup.address}
-            title={meetup.title}
-            description={meetup.description}
-        />
+        <>
+            <Head>
+                <title> {meetup.title}</title>
+                <meta name="description" content={meetup.description} />
+            </Head>
+            <MeetupDetail
+                key={meetup.id}
+                id={meetup.id}
+                image={meetup.image}
+                address={meetup.address}
+                title={meetup.title}
+                description={meetup.description}
+            />
+        </>
     );
 };
 
