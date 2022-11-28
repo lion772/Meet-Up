@@ -3,7 +3,6 @@ import Head from "next/head";
 import { FC, Fragment } from "react";
 import { MeetupData } from "../components/meetups/MeetupDetail";
 import MeetupList from "../components/meetups/MeetupList";
-import { MONGODB_PASSWORD } from "../secrets";
 
 interface IHomePage {
     meetups: MeetupData[];
