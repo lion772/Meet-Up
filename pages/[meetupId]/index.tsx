@@ -4,6 +4,7 @@ import { FC } from "react";
 import MeetupDetail, {
     MeetupData,
 } from "../../components/meetups/MeetupDetail";
+import { MONGODB_USERNAME, MONGODB_PASSWORD } from "../../secrets";
 
 interface IMeetupDetailPage {
     meetup: MeetupData;
@@ -29,7 +30,7 @@ const MeetupDetailPage: FC<IMeetupDetailPage> = ({ meetup }) => {
 };
 
 export async function getStaticPaths() {
-    const uri = `mongodb+srv://lion772:kagebushin22@cluster0.xe1fe.mongodb.net/meetups?retryWrites=true&w=majority`;
+    const uri = `mongodb+srv://${MONGODB_USERNAME}:${MONGODB_PASSWORD}@cluster0.xe1fe.mongodb.net/meetups?retryWrites=true&w=majority`;
     const client = await MongoClient.connect(uri);
     const db = client.db();
     const meetupsCollection = db.collection("meetups");
